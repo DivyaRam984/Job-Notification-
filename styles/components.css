@@ -202,3 +202,238 @@ select.input {
 .empty-state__action {
   margin-top: var(--space-2);
 }
+
+/* ——— Filter bar ——— */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.filter-bar__input {
+  min-width: 200px;
+  flex: 1;
+}
+
+.filter-bar__select {
+  min-width: 120px;
+  width: auto;
+}
+
+/* ——— Job cards ——— */
+.job-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.job-cards-empty {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  color: var(--color-muted);
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius);
+  max-width: var(--text-max-width);
+}
+
+.job-card {
+  padding: var(--space-3);
+}
+
+.job-card__header {
+  margin-bottom: var(--space-2);
+}
+
+.job-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.job-card__company {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  color: var(--color-muted);
+}
+
+.job-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-1);
+  font-size: var(--text-small-size);
+  color: var(--color-text);
+}
+
+.job-card__salary {
+  font-size: var(--text-small-size);
+  color: var(--color-muted);
+  margin-bottom: var(--space-2);
+}
+
+.job-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+
+.job-card__source {
+  font-size: 12px;
+}
+
+.job-card__posted {
+  font-size: var(--text-small-size);
+  color: var(--color-muted);
+}
+
+.job-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.job-card__btn {
+  flex-shrink: 0;
+}
+
+/* ——— Modal ——— */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  pointer-events: none;
+  visibility: hidden;
+  transition: visibility var(--transition);
+}
+
+.modal--open {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.modal--open .modal__backdrop {
+  opacity: 1;
+}
+
+.modal--open .modal__panel {
+  opacity: 1;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(17, 17, 17, 0.2);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.modal__panel {
+  position: relative;
+  width: 100%;
+  max-width: var(--text-max-width);
+  max-height: 85vh;
+  overflow: auto;
+  background-color: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.modal__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-heading-size);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.modal__close {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: var(--border);
+  border-radius: var(--radius);
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.modal__close:hover {
+  border-color: var(--color-text);
+}
+
+.modal__close:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.modal__company {
+  font-family: var(--font-sans);
+  font-size: var(--text-body-size);
+  color: var(--color-muted);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.modal__description {
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line-height);
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.modal__description p {
+  margin: 0 0 var(--space-2) 0;
+}
+
+.modal__description p:last-child {
+  margin-bottom: 0;
+}
+
+.modal__skills-heading {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.modal__skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+.modal__skill-tag {
+  font-size: var(--text-small-size);
+  padding: var(--space-1) var(--space-2);
+  background-color: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+}

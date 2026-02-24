@@ -99,10 +99,16 @@
       '<p class="context-subtext">Your matched jobs at a glance.</p>' +
       "</section>" +
       '<section class="page-content">' +
-      '<div class="empty-state">' +
-      '<h3 class="empty-state__title">No jobs yet</h3>' +
-      '<p class="empty-state__message">In the next step, you will load a realistic dataset.</p>' +
+      '<div class="filter-bar">' +
+      '<input type="text" id="filter-keyword" class="input filter-bar__input" placeholder="Search title or company" />' +
+      '<select id="filter-location" class="input input--select filter-bar__select"><option value="">Location</option></select>' +
+      '<select id="filter-mode" class="input input--select filter-bar__select"><option value="">Mode</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option><option value="Onsite">Onsite</option></select>' +
+      '<select id="filter-experience" class="input input--select filter-bar__select"><option value="">Experience</option><option value="Fresher">Fresher</option><option value="0-1">0-1</option><option value="1-3">1-3</option><option value="3-5">3-5</option></select>' +
+      '<select id="filter-source" class="input input--select filter-bar__select"><option value="">Source</option><option value="LinkedIn">LinkedIn</option><option value="Naukri">Naukri</option><option value="Indeed">Indeed</option></select>' +
+      '<select id="filter-sort" class="input input--select filter-bar__select"><option value="latest">Latest</option><option value="oldest">Oldest</option></select>' +
       "</div>" +
+      '<div id="job-cards-container" class="job-cards"></div>' +
+      '<div id="job-cards-empty" class="job-cards-empty" hidden>No jobs match your search.</div>' +
       "</section>"
     );
   }
@@ -115,7 +121,8 @@
       '<p class="context-subtext">Jobs you’ve saved for later.</p>' +
       "</section>" +
       '<section class="page-content">' +
-      '<div class="empty-state">' +
+      '<div id="saved-jobs-container" class="job-cards"></div>' +
+      '<div id="saved-empty-state" class="empty-state" hidden>' +
       '<h3 class="empty-state__title">Nothing saved yet</h3>' +
       '<p class="empty-state__message">When you save jobs from the dashboard, they will appear here.</p>' +
       "</div>" +
@@ -184,6 +191,9 @@
 
     setActiveNav(normalized);
     closeMobileNav();
+
+    if (normalized === "/dashboard" && window.initDashboard) window.initDashboard();
+    if (normalized === "/saved" && window.initSaved) window.initSaved();
   }
 
   function handleClick(e) {
