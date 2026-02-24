@@ -3,12 +3,12 @@
  * Top Bar → Context Header → Workspace + Panel → Proof Footer
  */
 
-/* ——— Top Bar ——— */
+/* ——— Top Bar (shared navigation) ——— */
 .top-bar {
   position: sticky;
   top: 0;
   z-index: var(--z-topbar);
-  height: var(--topbar-height);
+  min-height: var(--topbar-height);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,17 +23,144 @@
   font-size: 1.125rem;
   color: var(--color-text);
   margin: 0;
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
-.top-bar__progress {
+.top-bar__brand:hover {
+  color: var(--color-text);
+}
+
+/* ——— Desktop nav ——— */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
   font-family: var(--font-sans);
   font-size: var(--text-small-size);
-  color: var(--color-muted);
-  margin: 0;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  padding-bottom: var(--space-1);
+  border-bottom: 2px solid transparent;
+  transition: border-color var(--transition), color var(--transition);
 }
 
-.top-bar__status {
-  /* Badge lives here */
+.nav-links a:hover {
+  color: var(--color-text);
+}
+
+.nav-links a.is-active {
+  border-bottom-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+/* ——— Hamburger (mobile) ——— */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--color-text);
+  transition: border-color var(--transition);
+}
+
+.nav-toggle:hover {
+  border-color: var(--color-text);
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.nav-toggle__icon {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: currentColor;
+  position: relative;
+  transition: background-color var(--transition);
+}
+
+.nav-toggle__icon::before,
+.nav-toggle__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 18px;
+  height: 2px;
+  background-color: currentColor;
+  transition: transform var(--transition);
+}
+
+.nav-toggle__icon::before {
+  top: -6px;
+}
+
+.nav-toggle__icon::after {
+  top: 6px;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon {
+  background-color: transparent;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__icon::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ——— Mobile nav dropdown ——— */
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: var(--topbar-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--space-2);
+    background-color: var(--color-bg);
+    border-bottom: var(--border);
+    z-index: var(--z-topbar);
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: var(--space-2);
+    border-bottom: none;
+    border-left: 3px solid transparent;
+  }
+
+  .nav-links a.is-active {
+    border-left-color: var(--color-accent);
+    border-bottom-color: transparent;
+  }
 }
 
 /* ——— Context Header ——— */

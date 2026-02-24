@@ -11,40 +11,32 @@
 </head>
 <body>
   <div class="app-shell">
-    <!-- Top Bar -->
+    <!-- Shared top navigation -->
     <header class="top-bar">
-      <h1 class="top-bar__brand">Job Notification App</h1>
-      <span class="top-bar__progress">Step 1 / 5</span>
-      <span class="top-bar__status">
-        <span class="badge badge-neutral">Not Started</span>
-      </span>
+      <a href="/" class="top-bar__brand" data-path="/">Job Notification App</a>
+      <nav class="top-bar__nav" aria-label="Main">
+        <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+          <span class="nav-toggle__icon"></span>
+        </button>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/dashboard" data-path="/dashboard">Dashboard</a></li>
+          <li><a href="/saved" data-path="/saved">Saved</a></li>
+          <li><a href="/digest" data-path="/digest">Digest</a></li>
+          <li><a href="/settings" data-path="/settings">Settings</a></li>
+          <li><a href="/proof" data-path="/proof">Proof</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <!-- Context Header -->
-    <section class="context-header">
-      <h2 class="context-headline">Design system foundation</h2>
-      <p class="context-subtext">Layout, tokens, and components. No product features yet.</p>
-    </section>
+    <!-- Route content (placeholder per route) -->
+    <main id="app" class="app-main">
+      <section class="context-header">
+        <h2 class="context-headline">Home</h2>
+        <p class="context-subtext">This section will be built in the next step.</p>
+      </section>
+    </main>
 
-    <!-- Primary workspace + Secondary panel -->
-    <div class="workspace-row">
-      <main class="primary-workspace">
-        <div class="card">
-          <p>Primary workspace content will go here. Clean cards, predictable components, subtle borders.</p>
-        </div>
-      </main>
-      <aside class="secondary-panel">
-        <h3 class="secondary-panel__title">Step explanation</h3>
-        <p class="secondary-panel__body">This panel holds step copy and a copyable prompt box.</p>
-        <textarea class="prompt-box" rows="4" readonly placeholder="Copyable prompt text…"></textarea>
-        <div class="secondary-panel__actions">
-          <button type="button" class="btn btn-primary">Primary</button>
-          <button type="button" class="btn btn-secondary">Secondary</button>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Proof Footer -->
+    <!-- Proof footer -->
     <footer class="proof-footer">
       <div class="proof-footer__inner">
         <h3 class="proof-footer__title">Proof</h3>
@@ -57,5 +49,8 @@
       </div>
     </footer>
   </div>
+
+  <script src="js/router.js"></script>
+  <script src="js/nav-toggle.js"></script>
 </body>
 </html>
