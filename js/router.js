@@ -55,36 +55,48 @@
     return (
       '<section class="context-header">' +
       '<h2 class="context-headline">Settings</h2>' +
-      '<p class="context-subtext">Configure your job preferences. (Placeholder — no logic yet.)</p>' +
+      '<p class="context-subtext">Configure your job preferences. Saved to this device.</p>' +
       '</section>' +
       '<section class="page-content">' +
       '<div class="card settings-card">' +
       '<div class="form-field">' +
-      '<label class="form-label" for="settings-role">Role keywords</label>' +
-      '<input type="text" id="settings-role" class="input" placeholder="e.g. Product Manager, Frontend" />' +
+      '<label class="form-label" for="settings-roleKeywords">Role keywords</label>' +
+      '<input type="text" id="settings-roleKeywords" class="input" placeholder="e.g. React, Java, Frontend (comma-separated)" />' +
       "</div>" +
       '<div class="form-field">' +
-      '<label class="form-label" for="settings-locations">Preferred locations</label>' +
-      '<input type="text" id="settings-locations" class="input" placeholder="e.g. San Francisco, Remote" />' +
+      '<label class="form-label" for="settings-preferredLocations">Preferred locations</label>' +
+      '<select id="settings-preferredLocations" class="input input--select input--multiselect" multiple>' +
+      "</select>" +
+      '<span class="form-hint">Hold Ctrl/Cmd to select multiple.</span>' +
       "</div>" +
       '<div class="form-field">' +
-      '<label class="form-label" for="settings-mode">Mode</label>' +
-      '<select id="settings-mode" class="input input--select">' +
-      '<option value="">Select…</option>' +
-      '<option value="remote">Remote</option>' +
-      '<option value="hybrid">Hybrid</option>' +
-      '<option value="onsite">Onsite</option>' +
+      '<span class="form-label">Preferred mode</span>' +
+      '<div class="checkbox-group">' +
+      '<label class="checkbox-label"><input type="checkbox" name="settings-mode" value="Remote" /> Remote</label>' +
+      '<label class="checkbox-label"><input type="checkbox" name="settings-mode" value="Hybrid" /> Hybrid</label>' +
+      '<label class="checkbox-label"><input type="checkbox" name="settings-mode" value="Onsite" /> Onsite</label>' +
+      "</div>" +
+      "</div>" +
+      '<div class="form-field">' +
+      '<label class="form-label" for="settings-experienceLevel">Experience level</label>' +
+      '<select id="settings-experienceLevel" class="input input--select">' +
+      '<option value="">Any</option>' +
+      '<option value="Fresher">Fresher</option>' +
+      '<option value="0-1">0-1 years</option>' +
+      '<option value="1-3">1-3 years</option>' +
+      '<option value="3-5">3-5 years</option>' +
       "</select>" +
       "</div>" +
       '<div class="form-field">' +
-      '<label class="form-label" for="settings-experience">Experience level</label>' +
-      '<select id="settings-experience" class="input input--select">' +
-      '<option value="">Select…</option>' +
-      '<option value="entry">Entry</option>' +
-      '<option value="mid">Mid</option>' +
-      '<option value="senior">Senior</option>' +
-      '<option value="lead">Lead</option>' +
-      "</select>" +
+      '<label class="form-label" for="settings-skills">Skills</label>' +
+      '<input type="text" id="settings-skills" class="input" placeholder="e.g. Python, SQL, React (comma-separated)" />' +
+      "</div>" +
+      '<div class="form-field">' +
+      '<label class="form-label" for="settings-minMatchScore">Minimum match score <span id="settings-minMatchScore-value">40</span></label>' +
+      '<input type="range" id="settings-minMatchScore" class="input-range" min="0" max="100" value="40" />' +
+      "</div>" +
+      '<div class="form-actions">' +
+      '<button type="button" id="settings-save" class="btn btn-primary">Save preferences</button>' +
       "</div>" +
       "</div>" +
       "</section>"
@@ -99,13 +111,20 @@
       '<p class="context-subtext">Your matched jobs at a glance.</p>' +
       "</section>" +
       '<section class="page-content">' +
+      '<div id="dashboard-prefs-banner" class="prefs-banner" hidden>Set your preferences to activate intelligent matching.</div>' +
       '<div class="filter-bar">' +
       '<input type="text" id="filter-keyword" class="input filter-bar__input" placeholder="Search title or company" />' +
       '<select id="filter-location" class="input input--select filter-bar__select"><option value="">Location</option></select>' +
       '<select id="filter-mode" class="input input--select filter-bar__select"><option value="">Mode</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option><option value="Onsite">Onsite</option></select>' +
       '<select id="filter-experience" class="input input--select filter-bar__select"><option value="">Experience</option><option value="Fresher">Fresher</option><option value="0-1">0-1</option><option value="1-3">1-3</option><option value="3-5">3-5</option></select>' +
       '<select id="filter-source" class="input input--select filter-bar__select"><option value="">Source</option><option value="LinkedIn">LinkedIn</option><option value="Naukri">Naukri</option><option value="Indeed">Indeed</option></select>' +
-      '<select id="filter-sort" class="input input--select filter-bar__select"><option value="latest">Latest</option><option value="oldest">Oldest</option></select>' +
+      '<select id="filter-sort" class="input input--select filter-bar__select"><option value="latest">Latest</option><option value="oldest">Oldest</option><option value="match">Match Score</option><option value="salary">Salary</option></select>' +
+      "</div>" +
+      '<div class="dashboard-toggle-wrap">' +
+      '<label class="toggle-label">' +
+      '<input type="checkbox" id="filter-only-matches" class="toggle-input" />' +
+      '<span class="toggle-text">Show only jobs above my threshold</span>' +
+      "</label>" +
       "</div>" +
       '<div id="job-cards-container" class="job-cards"></div>' +
       '<div id="job-cards-empty" class="job-cards-empty" hidden>No jobs match your search.</div>' +
@@ -194,6 +213,7 @@
 
     if (normalized === "/dashboard" && window.initDashboard) window.initDashboard();
     if (normalized === "/saved" && window.initSaved) window.initSaved();
+    if (normalized === "/settings" && window.initSettings) window.initSettings();
   }
 
   function handleClick(e) {

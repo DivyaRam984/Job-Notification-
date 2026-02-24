@@ -109,6 +109,50 @@ select.input {
   max-width: var(--text-max-width);
 }
 
+.form-hint {
+  display: block;
+  font-size: var(--text-small-size);
+  color: var(--color-muted);
+  margin: var(--space-1) 0 0 0;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-body-size);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.checkbox-label input {
+  width: auto;
+  margin: 0;
+}
+
+.input--multiselect {
+  min-height: 100px;
+}
+
+.input-range {
+  width: 100%;
+  max-width: 280px;
+  height: 8px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.form-actions {
+  margin-top: var(--space-3);
+}
+
 /* ——— Cards ——— */
 .card {
   background-color: var(--color-bg);
@@ -300,6 +344,41 @@ select.input {
 
 .job-card__btn {
   flex-shrink: 0;
+}
+
+.score-badge {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  font-weight: 600;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  border: var(--border-width) solid transparent;
+  margin-left: auto;
+}
+
+.score-badge--high {
+  border-color: var(--color-success);
+  color: var(--color-success);
+  background-color: var(--color-bg);
+}
+
+.score-badge--medium {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+  background-color: var(--color-bg);
+}
+
+.score-badge--neutral {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  background-color: var(--color-bg);
+}
+
+.score-badge--low {
+  border-color: var(--color-border);
+  color: var(--color-muted);
+  background-color: var(--color-bg);
+  opacity: 0.85;
 }
 
 /* ——— Modal ——— */
