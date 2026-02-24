@@ -1,0 +1,64 @@
+/**
+ * Job Notification App — Design Tokens
+ * Premium SaaS design system. Calm, intentional, coherent.
+ * Do not add gradients, glassmorphism, neon, or animation noise.
+ */
+
+:root {
+  /* ——— Color system (max 4 in use) ——— */
+  --color-bg: #F7F6F3;
+  --color-text: #111111;
+  --color-accent: #8B0000;
+  --color-success: #4A5D4A;
+  --color-warning: #8B7355;
+
+  /* Semantic aliases (still within the 4-color constraint) */
+  --color-border: #E5E4E0;
+  --color-border-focus: #8B0000;
+  --color-muted: #5C5C5C;
+
+  /* ——— Typography ——— */
+  --font-serif: "Source Serif 4", Georgia, serif;
+  --font-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-heading-size: clamp(1.75rem, 4vw, 2.25rem);
+  --text-heading-line-height: 1.35;
+  --text-heading-spacing: 0.02em;
+
+  --text-body-size: 17px;
+  --text-body-line-height: 1.65;
+  --text-max-width: 720px;
+
+  --text-small-size: 14px;
+  --text-small-line-height: 1.5;
+
+  /* ——— Spacing scale (only these values) ——— */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 40px;
+  --space-5: 64px;
+
+  /* ——— Layout ——— */
+  --layout-workspace-ratio: 70%;
+  --layout-panel-ratio: 30%;
+  --layout-gap: 24px;
+  --layout-max-width: 1200px;
+  --layout-edge: 40px;
+
+  /* ——— Components ——— */
+  --radius: 6px;
+  --border-width: 1px;
+  --border: var(--border-width) solid var(--color-border);
+
+  --transition-duration: 180ms;
+  --transition-ease: ease-in-out;
+  --transition: var(--transition-duration) var(--transition-ease);
+
+  /* ——— Top bar ——— */
+  --topbar-height: 56px;
+
+  /* ——— Z ——— */
+  --z-topbar: 100;
+  --z-overlay: 200;
+}

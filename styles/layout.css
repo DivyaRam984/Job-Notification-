@@ -1,0 +1,166 @@
+/**
+ * Job Notification App — Layout structure
+ * Top Bar → Context Header → Workspace + Panel → Proof Footer
+ */
+
+/* ——— Top Bar ——— */
+.top-bar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-topbar);
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--layout-edge);
+  background-color: var(--color-bg);
+  border-bottom: var(--border);
+}
+
+.top-bar__brand {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.top-bar__progress {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.top-bar__status {
+  /* Badge lives here */
+}
+
+/* ——— Context Header ——— */
+.context-header {
+  padding: var(--space-4) var(--layout-edge) var(--space-3);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+.context-header .context-headline {
+  margin-bottom: var(--space-1);
+}
+
+.context-header .context-subtext {
+  margin: 0;
+}
+
+/* ——— Primary workspace + Secondary panel ——— */
+.workspace-row {
+  display: flex;
+  gap: var(--layout-gap);
+  padding: 0 var(--layout-edge) var(--space-4);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.primary-workspace {
+  flex: 1;
+  min-width: 0;
+  max-width: var(--layout-workspace-ratio);
+}
+
+.secondary-panel {
+  width: var(--layout-panel-ratio);
+  min-width: 280px;
+  flex-shrink: 0;
+}
+
+.secondary-panel__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.secondary-panel__body {
+  font-size: var(--text-small-size);
+  line-height: var(--text-body-line-height);
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.secondary-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+}
+
+/* ——— Responsive: stack on narrow viewports ——— */
+@media (max-width: 900px) {
+  .workspace-row {
+    flex-direction: column;
+  }
+
+  .primary-workspace {
+    max-width: 100%;
+  }
+
+  .secondary-panel {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ——— Proof Footer ——— */
+.proof-footer {
+  padding: var(--space-3) var(--layout-edge);
+  border-top: var(--border);
+  background-color: var(--color-bg);
+}
+
+.proof-footer__inner {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+}
+
+.proof-footer__title {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.proof-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.proof-checklist li {
+  font-size: var(--text-small-size);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.proof-checklist li::before {
+  content: "□";
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.proof-checklist li.done::before {
+  content: "☑";
+  color: var(--color-success);
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Notification App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <h1 class="top-bar__brand">Job Notification App</h1>
+      <span class="top-bar__progress">Step 1 / 5</span>
+      <span class="top-bar__status">
+        <span class="badge badge-neutral">Not Started</span>
+      </span>
+    </header>
+
+    <!-- Context Header -->
+    <section class="context-header">
+      <h2 class="context-headline">Design system foundation</h2>
+      <p class="context-subtext">Layout, tokens, and components. No product features yet.</p>
+    </section>
+
+    <!-- Primary workspace + Secondary panel -->
+    <div class="workspace-row">
+      <main class="primary-workspace">
+        <div class="card">
+          <p>Primary workspace content will go here. Clean cards, predictable components, subtle borders.</p>
+        </div>
+      </main>
+      <aside class="secondary-panel">
+        <h3 class="secondary-panel__title">Step explanation</h3>
+        <p class="secondary-panel__body">This panel holds step copy and a copyable prompt box.</p>
+        <textarea class="prompt-box" rows="4" readonly placeholder="Copyable prompt text…"></textarea>
+        <div class="secondary-panel__actions">
+          <button type="button" class="btn btn-primary">Primary</button>
+          <button type="button" class="btn btn-secondary">Secondary</button>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Proof Footer -->
+    <footer class="proof-footer">
+      <div class="proof-footer__inner">
+        <h3 class="proof-footer__title">Proof</h3>
+        <ul class="proof-checklist">
+          <li>UI Built</li>
+          <li>Logic Working</li>
+          <li>Test Passed</li>
+          <li>Deployed</li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
