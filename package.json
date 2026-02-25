@@ -1,0 +1,7 @@
+{
+  "name": "job-notification-tracker",
+  "private": true,
+  "scripts": {
+    "start": "serve -s -p 3000"
+  }
+}
