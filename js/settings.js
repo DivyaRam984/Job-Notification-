@@ -92,10 +92,33 @@ window.initSettings = function () {
 
   var scoreEl = getEl("settings-minMatchScore");
   var scoreValEl = getEl("settings-minMatchScore-value");
+  function getSliderColor(value) {
+    value = parseInt(value, 10);
+  
+    if (value >= 80) return "#16a34a";   // green
+    if (value >= 60) return "#f59e0b";   // amber
+    if (value >= 40) return "#6b7280";   // neutral
+    return "#9ca3af";                    // grey
+  }
+  
+  function updateSliderUI(value) {
+    var color = getSliderColor(value);
+    var percent = value;
+  
+    scoreEl.style.background = 
+      "linear-gradient( to right, " + 
+      color + " " +
+      percent + "%,#e0e0e0 " +
+      percent + "%)" ;  
+    scoreEl.style.setProperty("--thumb-color", color);
+  }
+
   if (scoreEl && scoreValEl) {
     scoreEl.addEventListener("input", function () {
       scoreValEl.textContent = scoreEl.value;
+      updateSliderUI(scoreEl.value);
     });
+    updateSliderUI(scoreEl.value);
   }
 
   var saveBtn = getEl("settings-save");

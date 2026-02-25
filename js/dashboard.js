@@ -276,3 +276,32 @@ window.initDashboard = function () {
   var onlyMatchesEl = document.getElementById("filter-only-matches");
   if (onlyMatchesEl) onlyMatchesEl.addEventListener("change", onFilterChange);
 };
+// ===== Slider Color Logic =====
+const minMatchInput = document.getElementById("min-match");
+
+function updateSliderColor(value) {
+  let color;
+
+  if (value >= 80) {
+    color = "#22c55e"; // green
+  } else if (value >= 60) {
+    color = "#f59e0b"; // amber
+  } else if (value >= 40) {
+    color = "#6b7280"; // neutral
+  } else {
+    color = "#9ca3af"; // grey
+  }
+
+  minMatchInput.style.background =
+    `linear-gradient(to right, ${color} ${value}%, #e5e7eb ${value}%)`;
+
+  document.documentElement.style.setProperty('--slider-color', color);
+}
+
+if (minMatchInput) {
+  minMatchInput.addEventListener("input", function () {
+    updateSliderColor(this.value);
+  });
+
+  updateSliderColor(minMatchInput.value);
+}

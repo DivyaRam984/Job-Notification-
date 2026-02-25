@@ -61,4 +61,14 @@
   /* ——— Z ——— */
   --z-topbar: 100;
   --z-overlay: 200;
+
+  /* ——— Match score badge (visible, calm) ——— */
+  --score-high-color: #2D5A3D;
+  --score-high-bg: #E5EDE5;
+  --score-medium-color: #9A6B2E;
+  --score-medium-bg: #F5EFE6;
+  --score-neutral-color: #5C5C5C;
+  --score-neutral-bg: #EEEDEB;
+  --score-low-color: #8A8A8A;
+  --score-low-bg: #F0EFED;
 }

@@ -59,13 +59,13 @@
       '</section>' +
       '<section class="page-content">' +
       '<div class="card settings-card">' +
-      '<div class="form-field">' +
+      '<div class="form-field form-field--first">' +
       '<label class="form-label" for="settings-roleKeywords">Role keywords</label>' +
-      '<input type="text" id="settings-roleKeywords" class="input" placeholder="e.g. React, Java, Frontend (comma-separated)" />' +
+      '<input type="text" id="settings-roleKeywords" class="input" placeholder="e.g. React, Java, Frontend (comma-separated)" autocomplete="off" />' +
       "</div>" +
       '<div class="form-field">' +
       '<label class="form-label" for="settings-preferredLocations">Preferred locations</label>' +
-      '<select id="settings-preferredLocations" class="input input--select input--multiselect" multiple>' +
+      '<select id="settings-preferredLocations" class="input input--multiselect" multiple size="6">' +
       "</select>" +
       '<span class="form-hint">Hold Ctrl/Cmd to select multiple.</span>' +
       "</div>" +

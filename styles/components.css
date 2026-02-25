@@ -139,6 +139,16 @@ select.input {
 
 .input--multiselect {
   min-height: 100px;
+  display: block;
+  padding: var(--space-1);
+}
+
+.input--multiselect option {
+  padding: var(--space-1) var(--space-2);
+}
+
+.form-field--first {
+  margin-top: 0;
 }
 
 .input-range {
@@ -147,6 +157,40 @@ select.input {
   height: 8px;
   padding: 0;
   cursor: pointer;
+  accent-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.input-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: var(--border-width) solid var(--color-accent);
+  cursor: pointer;
+}
+
+.input-range::-webkit-slider-runnable-track {
+  height: 8px;
+  background: var(--color-border);
+  border-radius: var(--radius);
+}
+
+.input-range::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: var(--border-width) solid var(--color-accent);
+  cursor: pointer;
+}
+
+.input-range::-moz-range-track {
+  height: 8px;
+  background: var(--color-border);
+  border-radius: var(--radius);
 }
 
 .form-actions {
@@ -352,33 +396,39 @@ select.input {
   font-weight: 600;
   padding: var(--space-1) var(--space-2);
   border-radius: var(--radius);
-  border: var(--border-width) solid transparent;
+  border-width: 1px;
+  border-style: solid;
   margin-left: auto;
+  min-width: 2em;
+  text-align: center;
 }
 
+/* Green → 80–100 */
 .score-badge--high {
-  border-color: var(--color-success);
-  color: var(--color-success);
-  background-color: var(--color-bg);
+  border-color: var(--score-high-color);
+  color: var(--score-high-color);
+  background-color: var(--score-high-bg);
 }
 
+/* Amber → 60–79 */
 .score-badge--medium {
-  border-color: var(--color-warning);
-  color: var(--color-warning);
-  background-color: var(--color-bg);
+  border-color: var(--score-medium-color);
+  color: var(--score-medium-color);
+  background-color: var(--score-medium-bg);
 }
 
+/* Neutral → 40–59 */
 .score-badge--neutral {
-  border-color: var(--color-border);
-  color: var(--color-muted);
-  background-color: var(--color-bg);
+  border-color: var(--score-neutral-color);
+  color: var(--score-neutral-color);
+  background-color: var(--score-neutral-bg);
 }
 
+/* Grey → <40 */
 .score-badge--low {
-  border-color: var(--color-border);
-  color: var(--color-muted);
-  background-color: var(--color-bg);
-  opacity: 0.85;
+  border-color: var(--score-low-color);
+  color: var(--score-low-color);
+  background-color: var(--score-low-bg);
 }
 
 /* ——— Modal ——— */
@@ -515,4 +565,92 @@ select.input {
   border: var(--border);
   border-radius: var(--radius);
   color: var(--color-text);
+}
+/* ===== Dynamic Range Slider ===== */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 6px;
+  background: #e5e7eb;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--slider-color, #9ca3af);
+  cursor: pointer;
+  border: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--slider-color, #9ca3af);
+  cursor: pointer;
+  border: none;
+}
+
+
+/* Remove default styling */
+#settings-minMatchScore {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #e0e0e0;
+  outline: none;
+}
+/* Track (Chrome/Safari) */
+#settings-minMatchScore::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 5px;
+}
+/* Thumb */
+#settings-minMatchScore::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--thumb-color, #6b7280);
+  cursor: pointer;
+  margin-top: -5px; /* Align thumb vertically */
+  border: none;
+}/* Thumb */
+#settings-minMatchScore::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--thumb-color, #6b7280);
+  cursor: pointer;
+  margin-top: -5px; /* Align thumb vertically */
+  border: none;
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: red;
+  cursor: pointer;
 }
