@@ -478,9 +478,47 @@
 }
 
 .test-checklist__tip {
+  position: relative;
   font-size: var(--text-small-size);
-  color: var(--color-muted);
+  color: var(--color-accent);
   cursor: help;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 2px;
+}
+
+.test-checklist__tip:hover,
+.test-checklist__tip:focus {
+  outline: none;
+  color: var(--color-text);
+}
+
+.test-checklist__tip-bubble {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  margin-bottom: var(--space-1);
+  padding: var(--space-2);
+  max-width: 280px;
+  font-size: var(--text-small-size);
+  line-height: var(--text-body-line-height);
+  color: var(--color-text);
+  background-color: #fff;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(17, 17, 17, 0.08);
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+  z-index: var(--z-overlay);
+  pointer-events: none;
+}
+
+.test-checklist__tip:hover .test-checklist__tip-bubble,
+.test-checklist__tip:focus .test-checklist__tip-bubble {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* ——— Ship (/jt/08-ship) ——— */

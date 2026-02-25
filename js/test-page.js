@@ -44,7 +44,7 @@ window.initTestPage = function () {
         "<label class=\"test-checklist__label\">" +
         "<input type=\"checkbox\" class=\"test-checklist__input\" data-test-key=\"" + escapeHtml(item.key) + "\"" + (checked ? " checked" : "") + " />" +
         "<span class=\"test-checklist__text\">" + escapeHtml(item.label) + "</span>" +
-        (item.tip ? " <span class=\"test-checklist__tip\" title=\"" + escapeHtml(item.tip) + "\">How to test</span>" : "") +
+        (item.tip ? " <span class=\"test-checklist__tip\" tabindex=\"0\">How to test<span class=\"test-checklist__tip-bubble\">" + escapeHtml(item.tip) + "</span></span>" : "") +
         "</label>" +
         "</li>";
     });
