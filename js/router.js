@@ -156,10 +156,17 @@
       '<h2 class="context-headline">Digest</h2>' +
       '<p class="context-subtext">Your daily summary.</p>' +
       "</section>" +
-      '<section class="page-content">' +
-      '<div class="empty-state">' +
-      '<h3 class="empty-state__title">Daily digest coming soon</h3>' +
-      '<p class="empty-state__message">You’ll receive a daily summary of matched jobs at 9AM. This feature will be built in a later step.</p>' +
+      '<section class="page-content digest-page">' +
+      '<div id="digest-no-prefs" class="digest-block digest-block--no-prefs" hidden>Set preferences to generate a personalized digest.</div>' +
+      '<div id="digest-actions-top">' +
+      '<p class="digest-note">Demo Mode: Daily 9AM trigger simulated manually.</p>' +
+      '<button type="button" id="digest-generate-btn" class="btn btn-primary">Generate Today\'s 9AM Digest (Simulated)</button>' +
+      "</div>" +
+      '<div id="digest-card-wrap"></div>' +
+      '<div id="digest-no-matches" class="digest-block digest-block--no-matches" hidden>No matching roles today. Check again tomorrow.</div>' +
+      '<div id="digest-actions-bottom" class="digest-actions-bottom" hidden>' +
+      '<button type="button" id="digest-copy-btn" class="btn btn-secondary">Copy Digest to Clipboard</button>' +
+      '<a id="digest-email-btn" href="#" class="btn btn-secondary">Create Email Draft</a>' +
       "</div>" +
       "</section>"
     );
@@ -214,6 +221,7 @@
     if (normalized === "/dashboard" && window.initDashboard) window.initDashboard();
     if (normalized === "/saved" && window.initSaved) window.initSaved();
     if (normalized === "/settings" && window.initSettings) window.initSettings();
+    if (normalized === "/digest" && window.initDigest) window.initDigest();
   }
 
   function handleClick(e) {
