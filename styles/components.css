@@ -390,6 +390,72 @@ select.input {
   flex-shrink: 0;
 }
 
+.job-card__status {
+  margin-bottom: var(--space-2);
+}
+
+.job-card__status-label {
+  display: block;
+  font-size: var(--text-small-size);
+  font-weight: 500;
+  color: var(--color-muted);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.status-select {
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  border: var(--border);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-width: 120px;
+}
+
+.status-select--not-applied {
+  border-color: var(--status-not-applied-color);
+  color: var(--status-not-applied-color);
+}
+
+.status-select--applied {
+  border-color: var(--status-applied-color);
+  color: var(--status-applied-color);
+}
+
+.status-select--rejected {
+  border-color: var(--status-rejected-color);
+  color: var(--status-rejected-color);
+}
+
+.status-select--selected {
+  border-color: var(--status-selected-color);
+  color: var(--status-selected-color);
+}
+
+.status-toast {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  font-family: var(--font-sans);
+  font-size: var(--text-small-size);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  opacity: 0;
+  transition: opacity var(--transition), transform var(--transition);
+  z-index: calc(var(--z-overlay) + 10);
+  max-width: 90%;
+}
+
+.status-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 .score-badge {
   font-family: var(--font-sans);
   font-size: var(--text-small-size);

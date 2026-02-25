@@ -262,6 +262,75 @@
   background-color: var(--color-bg);
 }
 
+.digest-status-updates {
+  margin-bottom: var(--space-3);
+}
+
+.digest-status-updates.hidden {
+  display: none;
+}
+
+.digest-updates__title {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.digest-updates__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: var(--border);
+  border-radius: var(--radius);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.digest-updates__item {
+  font-size: var(--text-small-size);
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border);
+  color: var(--color-text);
+}
+
+.digest-updates__item:last-child {
+  border-bottom: none;
+}
+
+.digest-updates__job {
+  font-weight: 500;
+}
+
+.digest-updates__status {
+  margin-left: var(--space-2);
+  font-weight: 500;
+}
+
+.digest-updates__status--applied {
+  color: var(--status-applied-color);
+}
+
+.digest-updates__status--rejected {
+  color: var(--status-rejected-color);
+}
+
+.digest-updates__status--selected {
+  color: var(--status-selected-color);
+}
+
+.digest-updates__status--not-applied {
+  color: var(--status-not-applied-color);
+}
+
+.digest-updates__date {
+  display: block;
+  margin-top: var(--space-1);
+  font-size: 12px;
+  color: var(--color-muted);
+}
+
 .digest-note {
   font-size: var(--text-small-size);
   color: var(--color-muted);

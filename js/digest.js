@@ -5,7 +5,9 @@ window.initDigest = function () {
   var DIGEST_PREFIX = "jobTrackerDigest_";
   var jobs = window.JOBS || [];
   var Prefs = window.JobTrackerPreferences;
+  var Status = window.JobTrackerStatus;
   var noPrefsEl = document.getElementById("digest-no-prefs");
+  var updatesWrapEl = document.getElementById("digest-status-updates-wrap");
   var actionsTopEl = document.getElementById("digest-actions-top");
   var cardWrapEl = document.getElementById("digest-card-wrap");
   var noMatchesEl = document.getElementById("digest-no-matches");
@@ -103,6 +105,41 @@ window.initDigest = function () {
     var div = document.createElement("div");
     div.textContent = text;
     return div.innerHTML;
+  }
+
+  function formatUpdateDate(iso) {
+    if (!iso) return "";
+    try {
+      var d = new Date(iso);
+      var m = d.getMonth() + 1;
+      var day = d.getDate();
+      var y = d.getFullYear();
+      return m + "/" + day + "/" + y;
+    } catch (e) {
+      return iso;
+    }
+  }
+
+  function renderStatusUpdates() {
+    if (!updatesWrapEl || !Status) return;
+    var list = Status.getUpdates();
+    if (!list.length) {
+      updatesWrapEl.innerHTML = "";
+      updatesWrapEl.hidden = true;
+      return;
+    }
+    updatesWrapEl.hidden = false;
+    var html = '<h3 class="digest-updates__title">Recent Status Updates</h3><ul class="digest-updates__list">';
+    list.forEach(function (u) {
+      html +=
+        "<li class=\"digest-updates__item\">" +
+        "<span class=\"digest-updates__job\">" + escapeHtml(u.title || "") + " at " + escapeHtml(u.company || "") + "</span>" +
+        " <span class=\"digest-updates__status digest-updates__status--" + (u.status || "").replace(/\s+/g, "-").toLowerCase() + "\">" + escapeHtml(u.status || "") + "</span>" +
+        " <span class=\"digest-updates__date\">" + escapeHtml(formatUpdateDate(u.dateChanged)) + "</span>" +
+        "</li>";
+    });
+    html += "</ul>";
+    updatesWrapEl.innerHTML = html;
   }
 
   function digestToPlainText(list, dateLabel) {
@@ -232,6 +269,7 @@ window.initDigest = function () {
     if (genBtn) {
       genBtn.onclick = doGenerate;
     }
+    renderStatusUpdates();
   }
 
   run();

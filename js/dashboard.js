@@ -5,6 +5,7 @@ window.initDashboard = function () {
   var STORAGE_KEY = "jobTrackerSavedIds";
   var jobs = window.JOBS || [];
   var Prefs = window.JobTrackerPreferences;
+  var Status = window.JobTrackerStatus;
   var container = document.getElementById("job-cards-container");
   var emptyEl = document.getElementById("job-cards-empty");
   var bannerEl = document.getElementById("dashboard-prefs-banner");
@@ -138,9 +139,14 @@ window.initDashboard = function () {
       mode: (document.getElementById("filter-mode") && document.getElementById("filter-mode").value) || "",
       experience: (document.getElementById("filter-experience") && document.getElementById("filter-experience").value) || "",
       source: (document.getElementById("filter-source") && document.getElementById("filter-source").value) || "",
+      status: (document.getElementById("filter-status") && document.getElementById("filter-status").value) || "",
       sort: (document.getElementById("filter-sort") && document.getElementById("filter-sort").value) || "latest",
       onlyMatches: onlyMatchesEl ? onlyMatchesEl.checked : false
     };
+  }
+
+  function getJobStatus(jobId) {
+    return Status && Status.get(jobId) || "Not Applied";
   }
 
   function filterAndSortJobs() {
@@ -169,6 +175,9 @@ window.initDashboard = function () {
     if (f.onlyMatches && prefs) {
       var threshold = typeof prefs.minMatchScore === "number" ? prefs.minMatchScore : 40;
       list = list.filter(function (j) { return j._score >= threshold; });
+    }
+    if (f.status) {
+      list = list.filter(function (j) { return getJobStatus(j.id) === f.status; });
     }
 
     var sort = f.sort || "latest";
@@ -213,6 +222,8 @@ window.initDashboard = function () {
       var saved = savedIds.indexOf(j.id) !== -1;
       var score = j._score != null ? j._score : 0;
       var scoreClass = scoreBadgeClass(score);
+      var jobStatus = getJobStatus(j.id);
+      var statusClass = "status-select--" + jobStatus.replace(/\s+/g, "-").toLowerCase();
       html +=
         '<article class="job-card card" data-job-id="' + escapeHtml(j.id) + '">' +
         '<div class="job-card__header">' +
@@ -230,6 +241,15 @@ window.initDashboard = function () {
         '<div class="job-card__footer">' +
         '<span class="badge job-card__source">' + escapeHtml(j.source || "") + "</span>" +
         '<span class="job-card__posted">' + escapeHtml(postedLabel(j.postedDaysAgo)) + "</span>" +
+        "</div>" +
+        '<div class="job-card__status">' +
+        '<label class="job-card__status-label">Status</label>' +
+        '<select class="status-select ' + statusClass + '" data-job-id="' + escapeHtml(j.id) + '" data-action="status">' +
+        '<option value="Not Applied"' + (jobStatus === "Not Applied" ? " selected" : "") + '>Not Applied</option>' +
+        '<option value="Applied"' + (jobStatus === "Applied" ? " selected" : "") + '>Applied</option>' +
+        '<option value="Rejected"' + (jobStatus === "Rejected" ? " selected" : "") + '>Rejected</option>' +
+        '<option value="Selected"' + (jobStatus === "Selected" ? " selected" : "") + '>Selected</option>' +
+        "</select>" +
         "</div>" +
         '<div class="job-card__actions">' +
         '<button type="button" class="btn btn-secondary job-card__btn" data-action="view">View</button>' +
@@ -256,6 +276,18 @@ window.initDashboard = function () {
         btn.textContent = isSaved(id) ? "Saved" : "Save";
       });
     });
+    container.querySelectorAll("select[data-action=status]").forEach(function (sel) {
+      sel.addEventListener("change", function () {
+        var id = sel.getAttribute("data-job-id");
+        var status = sel.value;
+        if (!id || !Status) return;
+        var job = jobs.filter(function (j) { return j.id === id; })[0];
+        Status.set(id, status);
+        Status.pushUpdate(id, job ? job.title : "", job ? job.company : "", status);
+        if (window.showStatusToast) window.showStatusToast(status);
+        sel.className = "status-select status-select--" + status.replace(/\s+/g, "-").toLowerCase();
+      });
+    });
   }
 
   function onFilterChange() {
@@ -267,7 +299,7 @@ window.initDashboard = function () {
   updateBanner();
   renderCards(filterAndSortJobs());
 
-  ["filter-location", "filter-mode", "filter-experience", "filter-source", "filter-sort"].forEach(function (id) {
+  ["filter-location", "filter-mode", "filter-experience", "filter-source", "filter-status", "filter-sort"].forEach(function (id) {
     var el = document.getElementById(id);
     if (el) el.addEventListener("change", onFilterChange);
   });

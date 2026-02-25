@@ -71,4 +71,10 @@
   --score-neutral-bg: #EEEDEB;
   --score-low-color: #8A8A8A;
   --score-low-bg: #F0EFED;
+
+  /* ——— Job status (badge/select) ——— */
+  --status-not-applied-color: #5C5C5C;
+  --status-applied-color: #2563A0;
+  --status-rejected-color: #8B0000;
+  --status-selected-color: #2D5A3D;
 }

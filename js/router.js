@@ -118,6 +118,7 @@
       '<select id="filter-mode" class="input input--select filter-bar__select"><option value="">Mode</option><option value="Remote">Remote</option><option value="Hybrid">Hybrid</option><option value="Onsite">Onsite</option></select>' +
       '<select id="filter-experience" class="input input--select filter-bar__select"><option value="">Experience</option><option value="Fresher">Fresher</option><option value="0-1">0-1</option><option value="1-3">1-3</option><option value="3-5">3-5</option></select>' +
       '<select id="filter-source" class="input input--select filter-bar__select"><option value="">Source</option><option value="LinkedIn">LinkedIn</option><option value="Naukri">Naukri</option><option value="Indeed">Indeed</option></select>' +
+      '<select id="filter-status" class="input input--select filter-bar__select"><option value="">All</option><option value="Not Applied">Not Applied</option><option value="Applied">Applied</option><option value="Rejected">Rejected</option><option value="Selected">Selected</option></select>' +
       '<select id="filter-sort" class="input input--select filter-bar__select"><option value="latest">Latest</option><option value="oldest">Oldest</option><option value="match">Match Score</option><option value="salary">Salary</option></select>' +
       "</div>" +
       '<div class="dashboard-toggle-wrap">' +
@@ -158,6 +159,7 @@
       "</section>" +
       '<section class="page-content digest-page">' +
       '<div id="digest-no-prefs" class="digest-block digest-block--no-prefs" hidden>Set preferences to generate a personalized digest.</div>' +
+      '<div id="digest-status-updates-wrap" class="digest-status-updates"></div>' +
       '<div id="digest-actions-top">' +
       '<p class="digest-note">Demo Mode: Daily 9AM trigger simulated manually.</p>' +
       '<button type="button" id="digest-generate-btn" class="btn btn-primary">Generate Today\'s 9AM Digest (Simulated)</button>' +
