@@ -184,6 +184,37 @@
     );
   }
 
+  /* ——— Test checklist (/jt/07-test) ——— */
+  function renderTest() {
+    return (
+      '<section class="context-header">' +
+      '<h2 class="context-headline">Test Checklist</h2>' +
+      '<p class="context-subtext">Verify all items before shipping.</p>' +
+      "</section>" +
+      '<section class="page-content">' +
+      '<div class="test-summary" id="test-summary">Tests Passed: 0 / 10</div>' +
+      '<div id="test-warning" class="test-warning" hidden>Resolve all issues before shipping.</div>' +
+      '<div class="test-checklist card">' +
+      '<ul id="test-checklist-list" class="test-checklist__list"></ul>' +
+      '<button type="button" id="test-reset-btn" class="btn btn-secondary">Reset Test Status</button>' +
+      "</div>" +
+      "</section>"
+    );
+  }
+
+  /* ——— Ship (/jt/08-ship) ——— */
+  function renderShip() {
+    return (
+      '<section class="context-header">' +
+      '<h2 class="context-headline">Ship</h2>' +
+      '<p class="context-subtext">Final gate before shipping.</p>' +
+      "</section>" +
+      '<section class="page-content">' +
+      '<div id="ship-content"></div>' +
+      "</section>"
+    );
+  }
+
   /* ——— 404 ——— */
   function render404() {
     return (
@@ -200,7 +231,9 @@
     "/settings": { title: "Settings", render: renderSettings },
     "/saved": { title: "Saved", render: renderSaved },
     "/digest": { title: "Digest", render: renderDigest },
-    "/proof": { title: "Proof", render: renderProof }
+    "/proof": { title: "Proof", render: renderProof },
+    "/jt/07-test": { title: "Test Checklist", render: renderTest },
+    "/jt/08-ship": { title: "Ship", render: renderShip }
   };
 
   function render(path) {
@@ -224,6 +257,8 @@
     if (normalized === "/saved" && window.initSaved) window.initSaved();
     if (normalized === "/settings" && window.initSettings) window.initSettings();
     if (normalized === "/digest" && window.initDigest) window.initDigest();
+    if (normalized === "/jt/07-test" && window.initTestPage) window.initTestPage();
+    if (normalized === "/jt/08-ship" && window.initShipPage) window.initShipPage();
   }
 
   function handleClick(e) {
