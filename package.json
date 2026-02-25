@@ -2,6 +2,6 @@
   "name": "job-notification-tracker",
   "private": true,
   "scripts": {
-    "start": "serve -s -p 3000"
+    "start": "npx serve . -s -p 3000"
   }
 }
