@@ -179,7 +179,10 @@
     return (
       '<section class="context-header">' +
       '<h2 class="context-headline">Proof</h2>' +
-      '<p class="context-subtext">Placeholder for artifact collection. No logic yet.</p>' +
+      '<p class="context-subtext">Quality gate and artifact collection.</p>' +
+      "</section>" +
+      '<section class="page-content">' +
+      '<div id="proof-content" class="proof-content"></div>' +
       "</section>"
     );
   }
@@ -259,6 +262,7 @@
     if (normalized === "/digest" && window.initDigest) window.initDigest();
     if (normalized === "/jt/07-test" && window.initTestPage) window.initTestPage();
     if (normalized === "/jt/08-ship" && window.initShipPage) window.initShipPage();
+    if (normalized === "/proof" && window.initProofPage) window.initProofPage();
   }
 
   function handleClick(e) {

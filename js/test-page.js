@@ -91,3 +91,32 @@ window.initShipPage = function () {
       "</div>";
   }
 };
+
+window.initProofPage = function () {
+  var contentEl = document.getElementById("proof-content");
+  if (!contentEl) return;
+
+  var TestStatus = window.JobTrackerTestStatus;
+  var passed = TestStatus ? TestStatus.getPassedCount() : 0;
+  var allPassed = TestStatus && TestStatus.allPassed();
+
+  var html =
+    "<div class=\"proof-content__gate card\">" +
+    "<h3 class=\"proof-content__title\">Quality gate</h3>" +
+    "<p class=\"proof-content__summary\">Tests Passed: " + passed + " / 10</p>" +
+    "<p class=\"proof-content__actions\">" +
+    "<a href=\"/jt/07-test\" class=\"btn btn-secondary\" data-path=\"/jt/07-test\">Test Checklist</a> " +
+    "<a href=\"/jt/08-ship\" class=\"btn " + (allPassed ? "btn-primary" : "btn-secondary") + "\" data-path=\"/jt/08-ship\">Ship</a>" +
+    "</p>" +
+    "</div>" +
+    "<div class=\"proof-content__checklist card\">" +
+    "<h3 class=\"proof-content__title\">Proof</h3>" +
+    "<ul class=\"proof-content__list\">" +
+    "<li>UI Built</li>" +
+    "<li>Logic Working</li>" +
+    "<li>Test Passed</li>" +
+    "<li>Deployed</li>" +
+    "</ul>" +
+    "</div>";
+  contentEl.innerHTML = html;
+};
